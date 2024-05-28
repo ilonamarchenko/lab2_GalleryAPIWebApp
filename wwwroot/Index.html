@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Gallery</title>
+    <link rel="stylesheet" href="css/site.css?v=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1 class="poppins-regular">Gallery</h1>
+
+    <!-- Add Category -->
+    <div class="section">
+        <h3 class="poppins-medium">Add Category</h3>
+        <form action="javascript:void(0);" method="POST" onsubmit="addCategory()">
+            <input type="text" id="add-name" placeholder="New Category">
+            <input type="text" id="add-description" placeholder="New Description Category">
+            <input type="submit" value="Add">
+        </form>
+    </div>
+
+    <!-- Add Artist -->
+    <div class="section">
+        <h3 class="poppins-medium">Add Artist</h3>
+        <form action="javascript:void(0);" method="POST" onsubmit="addArtist()">
+            <input type="text" id="add-artist-name" placeholder="New Artist">
+            <input type="text" id="add-artist-description" placeholder="New Description Artist">
+            <input type="submit" value="Add">
+        </form>
+    </div>
+
+    <!-- Add Work -->
+    <div class="section">
+        <h3 class="poppins-medium">Add Work</h3>
+        <form action="javascript:void(0);" method="POST" onsubmit="addWork()">
+            <input type="text" id="add-work-title" placeholder="New Work">
+            <input type="text" id="add-work-description" placeholder="New Description Work">
+            <select id="add-work-category"></select> <!-- Category Selection -->
+            <select id="add-work-artist"></select> <!-- Artist Selection -->
+            <input type="submit" value="Add">
+        </form>
+    </div>
+
+
+    <!-- Edit Form -->
+    <div id="editForm" style="display:none;">
+        <h3 class="poppins-medium">Edit</h3>
+        <form action="javascript:void(0);" onsubmit="updateItem()">
+            <input type="hidden" id="edit-id">
+            <input type="hidden" id="edit-type">
+
+            <!-- Category Edit -->
+            <div id="edit-category-form" style="display:none;">
+                <input type="text" id="edit-name" placeholder="Category Name">
+                <input type="text" id="edit-description" placeholder="Category Description">
+            </div>
+
+            <!-- Artist Edit -->
+            <div id="edit-artist-form" style="display:none;">
+                <input type="text" id="edit-artist-name" placeholder="Artist Name">
+                <input type="text" id="edit-artist-description" placeholder="Artist Description">
+            </div>
+
+            <!-- Work Edit -->
+            <div id="edit-work-form" style="display:none;">
+                <input type="text" id="edit-title" placeholder="Work Title">
+                <input type="text" id="edit-description" placeholder="Work Description">
+                <select id="edit-category"></select> <!-- Category Selection -->
+                <select id="edit-artist"></select> <!-- Artist Selection -->
+            </div>
+
+            <input type="submit" value="Save">
+            <a href="javascript:void(0);" onclick="closeInput()" aria-label="Close">&#10006;</a>
+        </form>
+    </div>
+
+    <!-- Categories Section -->
+    <div class="section">
+        <h3 class="poppins-medium">Categories</h3>
+        <p id="counter"></p>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th class="actions-header">Actions</th>
+            </tr>
+            <tbody id="categories"></tbody>
+        </table>
+    </div>
+
+    <!-- Artists and Works Section -->
+    <div class="section-columns">
+        <div class="section">
+            <h3 class="poppins-medium">Artists</h3>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th class="actions-header">Actions</th>
+                </tr>
+                <tbody id="artists"></tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h3 class="poppins-medium">Works</h3>
+            <table>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th>Artist</th>
+                    <th class="actions-header">Actions</th>
+                </tr>
+                <tbody id="works"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="js/lab2.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            getCategories();
+            getArtists();
+            getWorks();
+            populateCategorySelect();
+            populateArtistSelect();
+            populateEditDropdowns(); // Populate dropdowns for editing works
+        });
+    </script>
+</body>
+</html>
